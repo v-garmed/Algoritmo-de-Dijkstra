@@ -12,7 +12,7 @@ def dijkstra(grafo, inicio):
     while Nodo_prioritario:
 
         distancia_actual, nodo_actual = heapq.heappop(Nodo_prioritario)  #Pasa los datos a Nodo_prioritario, pasando a ser el "nuveo nodo"
-
+        print(f"-> Nodo actual: {nodo_actual} con distancia acumulada {distancia_actual}")
 
         if nodo_actual in visitados:                     #Compara la distancia actual con la distancia guardada 
             continue
@@ -22,10 +22,13 @@ def dijkstra(grafo, inicio):
             if vecino in visitados:
                 continue
             distancia = distancia_actual + peso                            #Calcula la distancia al vecino
-            
+            print(f"   Vecino: {vecino} (peso {peso}), distancia potencial: {distancia}")
+
+
             if distancia < distancias[vecino]:                     #Si la distancia al vecino es menor que la guardada
                 distancias[vecino] = distancia                            #Actualiza la distancia al vecino
                 heapq.heappush(Nodo_prioritario, (distancia, vecino))
+    
 
     return distancias
 
@@ -47,7 +50,7 @@ def dibujar_grafo(grafo, distancias):
 
 
 grafo = {
-    'A': {'B': 1, 'C': 4},
+    'A': {'B': 4, 'C': 1},
     'B': {'A': 1, 'C': 2, 'D': 5},                      #Grafo generado para el ejemplo 🤖 
     'C': {'A': 4, 'B': 2, 'D': 1},
     'D': {'B': 5, 'C': 1}
